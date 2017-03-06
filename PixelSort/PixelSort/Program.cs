@@ -20,8 +20,9 @@ namespace PixelSort {
 				Color[] pixArray = buildArray(startEndPoint, input, x);
 				mergeSort(pixArray);
 				writePixels(pixArray, startEndPoint, input, x);
-				input.Save("D:\\Documents\\GitHub\\PixelSort\\PixelSort\\newImage.png");
+				
 			}
+			input.Save("D:\\Documents\\GitHub\\PixelSort\\PixelSort\\newImage.png");
 		}
 
 		private static void writePixels(Color[] pixArray, int[] startEndPoint, Bitmap input, int x) {
