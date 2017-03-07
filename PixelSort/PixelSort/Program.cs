@@ -66,23 +66,29 @@ namespace PixelSort {
 
 		private static int[] getSortRange(Bitmap input, int col) {
 			int[] startEnd = new int[2];
-			for(int i = 0; i < input.Height; i++) {
+			for(int i = 0; i <= input.Height - 1; i++) {
 				Color currentPix = input.GetPixel(col, i);
 				double R = currentPix.R;
 				double B = currentPix.B;
 				double G = currentPix.G;
-				double b = Math.Sqrt(0.299 * R * R + 0.587 * G * G + 0.114 * B * B);
-				if(b < .05)
+				double b = Math.Sqrt(0.299 * R * R + 0.587 * G * G + 0.114 * B * B) / 360;
+				if(b < .05) {
 					startEnd[0] = i;
+					break;
+				 }
+					
 			}
-			for(int j = startEnd[0]; j < input.Height; j++) {
+			for(int j = startEnd[0]; j <= input.Height - 1; j++) {
 				Color currentPix = input.GetPixel(col, j);
 				double R = currentPix.R;
 				double B = currentPix.B;
 				double G = currentPix.G;
-				double b = Math.Sqrt(0.299 * R * R + 0.587 * G * G + 0.114 * B * B);
-				if(b > .95)
+				double b = Math.Sqrt(0.299 * R * R + 0.587 * G * G + 0.114 * B * B) / 360;
+				if(b > .15) {
 					startEnd[1] = j;
+					break;
+				}
+					
 			}
 			return startEnd;
 		}
